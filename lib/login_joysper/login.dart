@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:login_page/login_joysper/welcomePage.dart';
-import '../auth_service.dart';
+import 'auth_service.dart';
 const colorBlue = const Color(0xff00AACF);
 const colorGrey = const Color(0xFFD9D9D9);
 
