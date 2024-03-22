@@ -16,7 +16,7 @@ class _AnasayfaState extends State<Anasayfa> {
       body:Stack(
         children: [
           Padding(
-            padding: const EdgeInsets.all(18.0),
+            padding: const EdgeInsets.only(left: 20.0,top: 60),
             child: Row(
               children: [
                 Text("Merhaba "+ widget.userMail),

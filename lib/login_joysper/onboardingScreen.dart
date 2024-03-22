@@ -3,26 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:login_page/login_animasyon/login_tasar%C4%B1m.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'login.dart';
 const colorBlue = const Color(0xff00AACF);
-
-class OnBoard {
-  final String title, description;
-
-  OnBoard({
-    required this.title,
-    required this.description,
-  });
-}
-
-final OnBoard demoData = OnBoard(
-    title: "OnBoarding Sayfası",
-    description:
-    "Bu sayfa uygulamanın işleyişi hakkında bilgi vermektedir. Uygulamaya giriş yaptıktan sonra karşımıza 3 farklı sayfa çıkacaktır.",
-  );
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});
@@ -53,7 +37,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     await prefs.setBool('isFirstTimeUser', false);
   }
 
-
   @override
   Widget build(BuildContext context) {
 
@@ -67,25 +50,24 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           height: height,
           width: width,
           padding: const EdgeInsets.symmetric(horizontal: 16),
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: <Color>[
-              Color(0xff00AACF),
-              Color(0xFFD9D9D9),
-              ],
-              tileMode: TileMode.mirror,
-            ),
-          ),
           child: Column(
             children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 60.0),
+                child: Center(child: Text("LOGO",style: TextStyle(
+                    shadows: [
+                      Shadow(
+                        color: Colors.black,
+                        blurRadius:3,
+                        offset: Offset(1, 1),
+                      ),
+                    ],
+                    fontSize: 20,fontWeight: FontWeight.w900
+                ),)),
+              ),
               // Carousel area
               Expanded(
-                child: OnBoardContent(
-                  title: demoData.title,
-                  description: demoData.description,
-                ),
+                child:Center(child: Text("OnBoarding Sayfası")),
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 48.0),
@@ -99,7 +81,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       backgroundColor: colorBlue,
                       foregroundColor: Colors.white,),
                     child: Text(
-                      "Tanıtımı Geç",
+                      "Giriş Sayfası",
                       style: GoogleFonts.dosis(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
@@ -109,8 +91,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       context.goNamed('login');
                       _completeOnboarding();
                     },
-                    //onPressed: () => context.goNamed('login'),
-
                   ),
                 ),
               ),
@@ -120,48 +100,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       ),
     ):
         loginScreen();
-  }
-}
-
-// OnBoarding area widget
-class OnBoardContent extends StatelessWidget {
-  OnBoardContent({
-    super.key,
-    required this.title,
-    required this.description,
-  });
-
-  String title;
-  String description;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const Spacer(),
-        Text(
-          title,
-          style: GoogleFonts.dosis(
-            color: Colors.white,
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        const SizedBox(
-          height: 16,
-        ),
-        Text(
-          description,
-          textAlign: TextAlign.center,
-          style: GoogleFonts.dosis(
-            color: Colors.white,
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        const Spacer(),
-      ],
-    );
   }
 }
 
